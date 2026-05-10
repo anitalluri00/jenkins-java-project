@@ -11,12 +11,8 @@
 	
 	<properties>
 		<docker.image.prefix>kammana</docker.image.prefix>
-		
-		<!-- Fixes the compilation error by setting the Java version (1.8 is Java 8, update to 11 or 17 if needed) -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		
-		<!-- Fixes the platform encoding warning -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>	
 	
@@ -34,6 +30,17 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<!-- Added newer maven-war-plugin to fix compatibility issues with modern JDKs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.4.0</version>
+			</plugin>
+		</plugins>
+	</build>
 	
 	<distributionManagement>
 		 <snapshotRepository>
